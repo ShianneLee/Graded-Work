@@ -1,0 +1,129 @@
+﻿@model BTIGradedWork.Controllers.GradedWorkBaseWithMediaItems
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GradedWork Base</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAssign)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAssign)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDateLate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDateLate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstWorkHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstWorkHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InfoURL)
+        </dt>
+
+        @{
+            if (Model.InfoURL != "No link available")
+            {
+
+                <dd>
+                    <a href="@Model.InfoURL">@Model.Name</a>
+                </dd>
+
+            }
+            else
+            {
+                <dd>
+                    No link available
+                </dd>
+
+            }
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CourseId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CourseId)
+            </dd>*@
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaItems)
+        </dt>
+    @if (Model.MediaItems.Count() != 0)
+    {
+        <dd>     
+            @foreach (var item in Model.MediaItems)
+            {   
+                <a href="/MediaItem/Uploads/@item.Id">@item.Name</a><br />
+            }
+        </dd>
+    }
+    else
+    {
+        <dd>No Media Items</dd>
+    }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", new{id = Model.CourseId})
+</p>

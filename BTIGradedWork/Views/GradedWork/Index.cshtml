@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BTIGradedWork.Controllers.GradedWorkBase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalValue)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.DateAssign)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DateDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InfoURL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+     <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Index", "MediaItem", new { id = item.Id}, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalValue)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAssign)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDue)
+        </td>
+        @{
+            if (item.InfoURL != "No link available")
+            {
+
+            <td>
+                <a href="@item.InfoURL">@item.Name</a>
+            </td>
+
+            }
+            else
+            {
+            <td>
+                No link available
+            </td>
+
+            }
+        }
+        <td>
+            @Html.ActionLink("Add Media Item", "Create", "MediaItem", new { id = item.Id }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
